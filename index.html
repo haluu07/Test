@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khám Phá Thiên Nhiên</title>
+    <title>Cây Thông Giáng Sinh</title>
     <style>
         * {
             margin: 0;
@@ -12,142 +12,177 @@
         }
 
         body {
+            background-color: #2a3d46;
             font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        header {
-            position: relative;
+            overflow: hidden;
             height: 100vh;
-            background-image: url('https://images.unsplash.com/photo-1521747116042-5f22e1fba406');
-            background-size: cover;
-            background-position: center;
-            color: white;
+        }
+
+        /* Background với hiệu ứng tuyết rơi */
+        .snow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            opacity: 0.8;
+        }
+
+        .snowflake {
+            position: absolute;
+            background-color: white;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: snowfall 10s linear infinite;
+        }
+
+        @keyframes snowfall {
+            0% { transform: translateY(-10px) translateX(0); }
+            100% { transform: translateY(100vh) translateX(50px); }
+        }
+
+        /* Cây thông Giáng Sinh */
+        .tree-container {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            transition: background 1s ease;
+            z-index: 5;
         }
 
-        header h1 {
-            font-size: 4rem;
+        .tree {
+            position: relative;
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid green;
             margin-bottom: 20px;
-            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
-            opacity: 0;
-            animation: fadeIn 2s ease-out forwards;
         }
 
-        header p {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-            opacity: 0;
-            animation: fadeIn 3s ease-out forwards;
-            animation-delay: 1s;
+        .tree:before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: -60px;
+            width: 120px;
+            height: 30px;
+            background-color: brown;
+            border-radius: 15px;
         }
 
+        /* Nền cây thông trang trí */
+        .tree-decor {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+
+        .tree-decor div {
+            width: 15px;
+            height: 15px;
+            background-color: red;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 5px rgba(255, 0, 0, 0.6);
+        }
+
+        /* Hiệu ứng ánh sáng */
+        .star {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3rem;
+            color: yellow;
+            animation: twinkle 1.5s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        /* Nút chuyển chế độ đêm sáng */
         .button {
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            background-color: #FF6B6B;
-            border: none;
-            border-radius: 50px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #ff6b6b;
             color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
             cursor: pointer;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            outline: none;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            z-index: 20;
         }
 
         .button:hover {
-            transform: translateY(-5px);
             background-color: #ff4757;
         }
 
-        .content {
-            padding: 100px 20px;
-            text-align: center;
-            background-color: #ffffff;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            margin-top: -50px;
-        }
-
-        .content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            animation: fadeUp 1s ease-out;
-        }
-
-        .content p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            animation: fadeUp 1.5s ease-out;
-            animation-delay: 0.5s;
-        }
-
-        @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(-50px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeUp {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
         .dark-mode {
-            background-color: #121212;
+            background-color: #111;
             color: white;
         }
 
-        .dark-mode header {
-            background-image: url('https://images.unsplash.com/photo-1534251164262-7a8e2879b7c0');
-        }
-
-        .dark-mode .button {
-            background-color: #4CAF50;
-        }
-
-        .dark-mode .button:hover {
-            background-color: #45a049;
-        }
     </style>
 </head>
 <body>
 
-<header id="header">
-    <h1>Khám Phá Thiên Nhiên</h1>
-    <p>Chào mừng bạn đến với hành trình khám phá vẻ đẹp của thiên nhiên.</p>
+    <!-- Cây Thông -->
+    <div class="tree-container">
+        <div class="tree"></div>
+        <div class="tree-decor">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div class="star">★</div>
+    </div>
+
+    <!-- Hiệu ứng Tuyết Rơi -->
+    <div class="snow" id="snow"></div>
+
+    <!-- Nút Chuyển Chế Độ Sáng/Tối -->
     <button class="button" onclick="toggleDarkMode()">Chuyển Chế Độ</button>
-</header>
 
-<div class="content">
-    <h2>Vẻ đẹp của thiên nhiên</h2>
-    <p>Thiên nhiên có những khung cảnh tuyệt vời, từ núi cao, biển rộng đến những khu rừng rậm rạp. Hãy để bạn được sống trong từng khoảnh khắc kỳ diệu của nó.</p>
-</div>
+    <script>
+        // Hàm tạo tuyết rơi
+        function createSnowflakes() {
+            const snowContainer = document.getElementById('snow');
+            const snowflakeCount = 100;
 
-<script>
-    function toggleDarkMode() {
-        const body = document.body;
-        body.classList.toggle('dark-mode');
-    }
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
 
-    // Hiệu ứng cuộn
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('header');
-        const content = document.querySelector('.content');
-        
-        if (window.scrollY > 50) {
-            header.style.backgroundPosition = `center ${window.scrollY * 0.5}px`;
+                // Đặt vị trí ngẫu nhiên cho tuyết
+                snowflake.style.left = Math.random() * 100 + 'vw';
+                snowflake.style.animationDuration = Math.random() * 10 + 5 + 's';
+                snowflake.style.animationDelay = Math.random() * 10 + 's';
+
+                snowContainer.appendChild(snowflake);
+            }
         }
-        
-        if (window.scrollY > 100) {
-            content.style.transform = `translateY(${window.scrollY * 0.1}px)`;
+
+        createSnowflakes();
+
+        // Chuyển đổi chế độ tối/sáng
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
         }
-    });
-</script>
+    </script>
 
 </body>
 </html>

@@ -16,9 +16,13 @@
             font-family: 'Arial', sans-serif;
             overflow: hidden;
             height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
 
-        /* Background với hiệu ứng tuyết rơi */
+        /* Hiệu ứng tuyết rơi */
         .snow {
             position: fixed;
             top: 0;
@@ -44,38 +48,37 @@
             100% { transform: translateY(100vh) translateX(50px); }
         }
 
-        /* Cây thông Giáng Sinh */
+        /* Cây thông */
         .tree-container {
-            position: absolute;
+            position: relative;
             bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
             text-align: center;
             z-index: 5;
         }
 
+        /* Cây thông lớn hơn */
         .tree {
             position: relative;
             width: 0;
             height: 0;
-            border-left: 50px solid transparent;
-            border-right: 50px solid transparent;
-            border-bottom: 100px solid green;
-            margin-bottom: 20px;
+            border-left: 120px solid transparent;
+            border-right: 120px solid transparent;
+            border-bottom: 180px solid green;
+            margin-bottom: 30px;
         }
 
         .tree:before {
             content: '';
             position: absolute;
-            top: -30px;
-            left: -60px;
-            width: 120px;
-            height: 30px;
+            top: -40px;
+            left: -80px;
+            width: 160px;
+            height: 50px;
             background-color: brown;
             border-radius: 15px;
         }
 
-        /* Nền cây thông trang trí */
+        /* Trang trí cây thông */
         .tree-decor {
             position: absolute;
             top: 30%;
@@ -87,20 +90,20 @@
         }
 
         .tree-decor div {
-            width: 15px;
-            height: 15px;
+            width: 20px;
+            height: 20px;
             background-color: red;
             border-radius: 50%;
             box-shadow: 0 0 10px 5px rgba(255, 0, 0, 0.6);
         }
 
-        /* Hiệu ứng ánh sáng */
+        /* Hiệu ứng ngôi sao trên cây */
         .star {
             position: absolute;
-            top: -40px;
+            top: -50px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 3rem;
+            font-size: 4rem;
             color: yellow;
             animation: twinkle 1.5s infinite alternate;
         }
@@ -111,7 +114,7 @@
             100% { opacity: 1; }
         }
 
-        /* Nút chuyển chế độ đêm sáng */
+        /* Nút chuyển chế độ sáng/tối */
         .button {
             position: absolute;
             top: 20px;
@@ -131,11 +134,43 @@
             background-color: #ff4757;
         }
 
+        /* Chế độ tối */
         .dark-mode {
             background-color: #111;
             color: white;
         }
 
+        /* Responsive cho điện thoại */
+        @media screen and (max-width: 768px) {
+            .tree {
+                border-left: 80px solid transparent;
+                border-right: 80px solid transparent;
+                border-bottom: 120px solid green;
+            }
+
+            .tree:before {
+                top: -30px;
+                left: -50px;
+                width: 100px;
+                height: 40px;
+            }
+
+            .tree-decor div {
+                width: 15px;
+                height: 15px;
+            }
+
+            .star {
+                font-size: 3rem;
+            }
+
+            .button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+                top: 10px;
+                right: 10px;
+            }
+        }
     </style>
 </head>
 <body>

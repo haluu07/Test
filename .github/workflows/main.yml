@@ -1,4 +1,3 @@
-
 name: CI/CD Deploy to EC2 (Apache)
 
 # Trigger the workflow on push to the main branch
@@ -33,12 +32,12 @@ jobs:
       # 4. Pre-flight check: SSH vào EC2 để kiểm tra kết nối
       - name: Pre-flight SSH check
         run: |
-          ssh -o StrictHostKeyChecking=no -i test.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "echo 'SSH OK'; mkdir -p /var/www/html"
+          ssh -o StrictHostKeyChecking=no -i testhehe.pem ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} "echo 'SSH OK'; mkdir -p /var/www/html"
 
       # 5. Rsync code lên EC2, exclude thư mục .git và .github
       - name: Rsync to EC2 (exclude git & secrets)
         run: |
-          rsync -avz -e "ssh -o StrictHostKeyChecking=no -i key.pem" --delete \
+          rsync -avz -e "ssh -o StrictHostKeyChecking=no -i testhehe.pem" --delete \
             --exclude ".git/" --exclude ".github/" --exclude "testhehe.pem" \
             ./ ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }}:/var/www/html/
 

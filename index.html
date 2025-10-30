@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cây Thông Giáng Sinh & Ông Già Noel</title>
+    <title>Cây Thông Giáng Sinh, Ông Già Noel và Tuần Lộc</title>
     <style>
         * {
             margin: 0;
@@ -149,41 +149,38 @@
         .santa {
             position: absolute;
             bottom: 10px;
-            right: -200px;
+            left: -250px;
             width: 80px;
             height: 120px;
-            background-color: #e74c3c;
-            border-radius: 50% 50% 0 0;
+            background-image: url('/mnt/data/25edc090-bedc-48b8-9fa0-0d83ce16149c.png'); /* Thêm hình ông già Noel từ tệp tải lên */
+            background-size: cover;
             animation: santaMove 6s linear infinite;
             z-index: 20;
         }
 
-        .santa:before {
-            content: '';
+        /* Tuần lộc */
+        .reindeer {
             position: absolute;
-            top: 10px;
-            left: 20px;
-            width: 40px;
-            height: 40px;
-            background-color: #fff;
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-        }
-
-        .santa .legs {
-            position: absolute;
-            bottom: -20px;
-            left: 25px;
-            width: 30px;
-            height: 40px;
-            background-color: #2c3e50;
-            border-radius: 10px;
+            bottom: 10px;
+            left: -300px;
+            width: 90px;
+            height: 90px;
+            background-image: url('/mnt/data/25edc090-bedc-48b8-9fa0-0d83ce16149c.png'); /* Thêm hình tuần lộc */
+            background-size: cover;
+            animation: reindeerMove 6s linear infinite;
+            z-index: 15;
         }
 
         @keyframes santaMove {
-            0% { right: -200px; }
-            50% { right: 50px; }
-            100% { right: -200px; }
+            0% { left: -300px; }
+            50% { left: 50px; }
+            100% { left: -300px; }
+        }
+
+        @keyframes reindeerMove {
+            0% { left: -350px; }
+            50% { left: 100px; }
+            100% { left: -350px; }
         }
 
         /* Nút chuyển chế độ sáng/tối */
@@ -246,7 +243,13 @@
             .santa {
                 width: 60px;
                 height: 90px;
-                right: -150px;
+                left: -150px;
+            }
+
+            .reindeer {
+                width: 70px;
+                height: 70px;
+                left: -200px;
             }
         }
     </style>
@@ -274,9 +277,10 @@
     </div>
 
     <!-- Ông Già Noel -->
-    <div class="santa">
-        <div class="legs"></div>
-    </div>
+    <div class="santa"></div>
+
+    <!-- Tuần lộc -->
+    <div class="reindeer"></div>
 
     <!-- Hiệu ứng Tuyết Rơi -->
     <div class="snow" id="snow"></div>

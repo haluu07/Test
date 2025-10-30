@@ -1,20 +1,92 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Web</title>
+    <title>Trang Wow</title>
     <style>
+        /* Reset margin và padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
+            background-color: #111;
+            color: white;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             text-align: center;
-            margin-top: 50px;
+        }
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-out;
+        }
+        .container {
+            position: relative;
+            width: 80%;
+            height: 70%;
+            overflow: hidden;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s ease;
+        }
+        .container:hover {
+            transform: scale(1.05) rotate(5deg);
+        }
+        .button {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            background-color: #ff6b6b;
+            border: none;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .button:hover {
+            background-color: #ff4757;
+            transform: translateY(-5px);
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
-    <h1>Chào mừng đến với trang </h1>
-    <p>Đ là một trang web cơ bảnddddddđ, được triển khai bằng </p>
+    <div class="container">
+        <div>
+            <h1>Chào mừng bạn!</h1>
+            <p>Hãy thử nhấn nút dưới đây để khám phá điều kỳ diệu!</p>
+            <button class="button" id="magicButton">Nhấn vào đây</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("magicButton").addEventListener("click", function() {
+            alert("Bạn đã khám phá ra một điều kỳ diệu! ✨");
+            document.querySelector("body").style.backgroundColor = getRandomColor();
+        });
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+    </script>
 </body>
 </html>
-

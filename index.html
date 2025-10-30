@@ -3,90 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Wow</title>
+    <title>Khám Phá Thiên Nhiên</title>
     <style>
-        /* Reset margin và padding */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #111;
+            background-color: #f0f0f0;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: relative;
+            height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1521747116042-5f22e1fba406');
+            background-size: cover;
+            background-position: center;
             color: white;
-            overflow: hidden;
+            text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            text-align: center;
+            flex-direction: column;
+            transition: background 1s ease;
         }
-        h1 {
+
+        header h1 {
             font-size: 4rem;
             margin-bottom: 20px;
-            animation: fadeIn 2s ease-out;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            animation: fadeIn 2s ease-out forwards;
         }
-        .container {
-            position: relative;
-            width: 80%;
-            height: 70%;
-            overflow: hidden;
-            border-radius: 15px;
-            background: linear-gradient(45deg, #6a11cb, #2575fc);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-            transition: transform 0.5s ease;
+
+        header p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeIn 3s ease-out forwards;
+            animation-delay: 1s;
         }
-        .container:hover {
-            transform: scale(1.05) rotate(5deg);
-        }
+
         .button {
             padding: 15px 30px;
-            font-size: 1.5rem;
-            background-color: #ff6b6b;
+            font-size: 1.2rem;
+            background-color: #FF6B6B;
             border: none;
             border-radius: 50px;
             color: white;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.3s;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            outline: none;
         }
+
         .button:hover {
-            background-color: #ff4757;
             transform: translateY(-5px);
+            background-color: #ff4757;
+        }
+
+        .content {
+            padding: 100px 20px;
+            text-align: center;
+            background-color: #ffffff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: -50px;
+        }
+
+        .content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: fadeUp 1s ease-out;
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            animation: fadeUp 1.5s ease-out;
+            animation-delay: 0.5s;
         }
 
         @keyframes fadeIn {
-            0% { opacity: 0; transform: translateY(-20px); }
+            0% { opacity: 0; transform: translateY(-50px); }
             100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .dark-mode header {
+            background-image: url('https://images.unsplash.com/photo-1534251164262-7a8e2879b7c0');
+        }
+
+        .dark-mode .button {
+            background-color: #4CAF50;
+        }
+
+        .dark-mode .button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div>
-            <h1>Chào mừng bạn!</h1>
-            <p>Hãy thử nhấn nút dưới đây để khám phá điều kỳ diệu!</p>
-            <button class="button" id="magicButton">Nhấn vào đây</button>
-        </div>
-    </div>
 
-    <script>
-        document.getElementById("magicButton").addEventListener("click", function() {
-            alert("Bạn đã khám phá ra một điều kỳ diệu! ✨");
-            document.querySelector("body").style.backgroundColor = getRandomColor();
-        });
+<header id="header">
+    <h1>Khám Phá Thiên Nhiên</h1>
+    <p>Chào mừng bạn đến với hành trình khám phá vẻ đẹp của thiên nhiên.</p>
+    <button class="button" onclick="toggleDarkMode()">Chuyển Chế Độ</button>
+</header>
 
-        function getRandomColor() {
-            const letters = '0123456789ABCDEF';
-            let color = '#';
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
+<div class="content">
+    <h2>Vẻ đẹp của thiên nhiên</h2>
+    <p>Thiên nhiên có những khung cảnh tuyệt vời, từ núi cao, biển rộng đến những khu rừng rậm rạp. Hãy để bạn được sống trong từng khoảnh khắc kỳ diệu của nó.</p>
+</div>
+
+<script>
+    function toggleDarkMode() {
+        const body = document.body;
+        body.classList.toggle('dark-mode');
+    }
+
+    // Hiệu ứng cuộn
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        const content = document.querySelector('.content');
+        
+        if (window.scrollY > 50) {
+            header.style.backgroundPosition = `center ${window.scrollY * 0.5}px`;
         }
-    </script>
+        
+        if (window.scrollY > 100) {
+            content.style.transform = `translateY(${window.scrollY * 0.1}px)`;
+        }
+    });
+</script>
+
 </body>
 </html>
